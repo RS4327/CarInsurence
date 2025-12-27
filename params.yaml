@@ -1,0 +1,29 @@
+data_ingestion:
+  raw_data_path: "https://raw.githubusercontent.com/RS4327/RAWDATA/main/insurance_claims.csv"
+
+data_validation:
+  min_age: 18
+  max_age: 100
+  allowed_binary_values: [0, 1]
+
+data_split:
+  test_size: 0.3
+  random_state: 42
+
+model:
+  name: logistic_regression
+  max_iter: 1000
+  class_weight: balanced
+  solver: liblinear
+
+training:
+  threshold: 0.3
+
+evaluation:
+  metrics:
+    - roc_auc
+    - recall
+    - precision
+
+monitoring:
+  min_recall: 0.75

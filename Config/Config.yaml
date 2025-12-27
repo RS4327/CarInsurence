@@ -1,0 +1,10 @@
+
+artifacts_root : artifacts
+
+data_ingestion:
+    root_dir: artifacts/data_ingestion
+    data_url_path: "https://raw.githubusercontent.com/RS4327/RAWDATA/main/insurance_claims.csv"
+    data_load_path: artifacts/data_ingestion/data_ingestion.csv
+    
+
+
