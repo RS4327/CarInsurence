@@ -12,23 +12,23 @@ class DataIngestionPipeline:
 
     def main(self):
         try:
-            # ✅ Load configuration
+            # Load configuration
             config = ConfigurationManagerConfig()
 
-            # ✅ Get Data Ingestion config entity
+            #  Get Data Ingestion config entity
             Data_Ingestion_Config = config.get_data_ingestion()
 
-            # ✅ Initialize Data Ingestion Component
+            #  Initialize Data Ingestion Component
             data_ingestion = DataIngestion(config=Data_Ingestion_Config)
 
-            # ✅ Execute data loading
+            #  Execute data loading
             df = data_ingestion.DataLoading()
 
-            # ✅ Log success
-            logger.info(f"✅ Data Ingestion Completed. Loaded data shape: {df.shape}")
-
+            #  Log success
+            logger.info(f"Data Ingestion Completed. Loaded data shape: {df.shape}")
+            return df
         except Exception as e:
-            logger.exception(f"❌ Error in {Stage_Name}: {e}")
+            logger.exception(f" Error in {Stage_Name}: {e}")
             raise e
 
 

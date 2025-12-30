@@ -6,5 +6,23 @@ data_ingestion:
     data_url_path: "https://raw.githubusercontent.com/RS4327/RAWDATA/main/insurance_claims.csv"
     data_load_path: artifacts/data_ingestion/data_ingestion.csv
     
-
-
+data_preprocessing:
+    # =================== Directory and Paths ===================
+    root_dir: artifacts/data_validation_preprocessing
+    validation_data_path: artifacts/Data_Ingestion/data_ingestion.csv
+    cleaned_data_path: artifacts/data_validation_preprocessing/cleaned_data.csv
+    preprocessing_data_path: artifacts/data_validation_preprocessing/scaler.pkl
+    encoded_data_path: artifacts/data_validation_preprocessing/encoded_data.csv
+    # ================== Data Splitting Config ===================
+    data_test_size: 0.2
+    data_random_state: 43
+    # ================== Validation Rules =========================
+    allowed_missing_percentage: 5 # Threshold for missing values for columns
+    allowed_outlier_std: 3 # Number of Standard devaitions for outlier
+    # =================== preprocessing Config ===================
+    encoding_strategy: "lable"      # lable or onehot
+    scaling_strategy: "standard"    #Standard or minmax
+    imputation_strategy: "mean"     # mean ,median,and mode
+    handling_outlier: True
+    handling_missing: True
+    save_intermediate: True         # Whether to save clean dataset before split

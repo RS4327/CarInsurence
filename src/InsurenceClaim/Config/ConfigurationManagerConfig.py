@@ -24,3 +24,25 @@ class ConfigurationManagerConfig:
             data_load_path=config.data_load_path
         )
         return data_ingetion_config
+    def get_data_preprocessing(self)->DataPreProcessingConfig:
+        config=self.config.data_preprocessing
+
+        data_preprocessing_config=DataPreProcessingConfig(
+            root_dir=config.root_dir,
+            validation_data_path=config.validation_data_path,
+            cleaned_data_path=config.cleaned_data_path,
+            preprocessing_data_path=config.preprocessing_data_path,
+            encoded_data_path=config.encoded_data_path,
+            data_test_size=config.data_test_size,
+            data_random_state=config.data_random_state,
+            allowed_missing_percentage=config.allowed_missing_percentage,
+            allowed_outlier_std=config.allowed_outlier_std,
+            encoding_strategy=config.encoding_strategy,
+            scaling_strategy=config.scaling_strategy,
+            imputation_strategy=config.imputation_strategy,
+            handling_outlier=config.handling_outlier,
+            handling_missing=config.handling_missing,
+            save_intermediate=config.save_intermediate
+
+        )
+        return data_preprocessing_config
