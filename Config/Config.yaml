@@ -26,3 +26,45 @@ data_preprocessing:
     handling_outlier: True
     handling_missing: True
     save_intermediate: True         # Whether to save clean dataset before split
+data_model:
+    root_dir: artifacts/data_model
+    logistic_model_path: artifacts/data_model/logistic_model.pkl
+    randomforest_model_path: artifacts/data_model/randomforest_model.pkl
+    scaler_path: artifacts/data_model/scaler.pkl
+    Logistic_Regression:
+        solver: lbfgs
+        max_iter: 500
+        class_weight: balanced
+        c: 1.0
+        random_state: 42
+    Random_Forest:
+        n_estimators: 200
+        max_depth: 10
+        class_weight: balanced
+        random_state: 42
+    Decision_Tree:
+        max_depth: 10
+        class_weight: balanced
+        random_state: 42
+    KNeighbors: 
+        n_neighbors: 5
+    SVM:
+        kernal: rbf
+        probability: True
+        class_weight: balanced
+        random_state: 42
+    Gradient_Boosting:
+        random_state: 42
+    AdaBoost:
+        random_state: 42
+    XGBoost:
+        scale_pos_weight : ((len(y_train) - sum(y_train)) / sum(y_train))
+        use_label_encoder: False
+        eval_metric : logloss
+        random_state: 42
+    LightGBM:
+        class_weight: balanced
+        random_state: 42
+    CatBoost: 
+        verbose: 0
+        random_state: 42

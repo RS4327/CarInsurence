@@ -10,6 +10,7 @@ from InsurenceClaim import logger
 # (works even if your class name capitalization differs)
 from InsurenceClaim.Pipeline.Stage_I01_DataIngestion import DataIngestionPipeline
 from InsurenceClaim.Pipeline.Stage_I02_DataPreProcessing import DataPreProcessingPipeline
+from InsurenceClaim.Pipeline.Stage_I03_DataModel import DataModelPipeline
 Stage_Name = 'Data Ingestion'
 
 try:
@@ -37,6 +38,15 @@ try:
     #logger.info(f'Data Frame Shape {df.shape}')
     logger.info(f">>>>>>>>>> Stage : {Stage_Name} Completed Successfully <<<<<<<<<<")
     logger.info(f"---------------------------- *** ------------------------------------------")
+except Exception as e:
+    logger.exception(e)
+    raise e
+Stage_Name="Data  Model"
+try:
+    logger.info(f">>>>>>>>>> Stage : {Stage_Name} Started <<<<<<<<<<")
+    obj=DataModelPipeline()
+    obj.main(x_train_scaller,x_test_scaller,y_train,y_test)
+    logger.info(f">>>>>>>>>> Stage : {Stage_Name} Completed Successfully <<<<<<<<<<")
 except Exception as e:
     logger.exception(e)
     raise e

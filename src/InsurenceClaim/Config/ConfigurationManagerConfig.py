@@ -46,3 +46,23 @@ class ConfigurationManagerConfig:
 
         )
         return data_preprocessing_config
+    def get_data_model(self)->DataModelConfig:
+         config=self.config.data_model
+         data_model_config=DataModelConfig(
+             root_dir=config.root_dir,
+             logistic_model_path=config.logistic_model_path,
+             randomforest_model_path=config.randomforest_model_path,
+             scaler_path=config.scaler_path,
+             Logistic_Regression=config.Logistic_Regression,
+             Random_Forest=config.Random_Forest,
+             Decision_Tree=config.Decision_Tree,
+             KNeighbors=config.KNeighbors,
+             SVM=config.SVM,
+             Gradient_Boosting=config.Gradient_Boosting,
+             AdaBoost=config.AdaBoost,
+             XGBoost=config.XGBoost,
+             LightGBM=config.LightGBM,
+             CatBoost=config.CatBoost
+
+         )
+         return data_model_config

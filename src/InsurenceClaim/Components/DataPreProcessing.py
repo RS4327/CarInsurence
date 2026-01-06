@@ -6,6 +6,7 @@ from InsurenceClaim.Entity.Config_Entity import DataPreProcessingConfig
 from InsurenceClaim import logger
 from sklearn.preprocessing import StandardScaler,LabelEncoder
 from sklearn.model_selection import train_test_split
+import pickle
 
 class DataPreProcessing:
     def __init__(self, config: DataPreProcessingConfig):
@@ -101,6 +102,9 @@ class DataPreProcessing:
             logger.info(" No duplicate rows found.")
 
         logger.info(f'Cheking Shape of the Data Frame after Handling the Duplciate values {df.shape}')
+        os.makedirs(os.path.dirname(self.config.cleaned_data_path), exist_ok=True)
+        df.to_csv(self.config.cleaned_data_path, index=False)
+        #df.to_csv(self.config.cleaned_data_path)
         return df
     def DataEncodingCategoricalVar(self, df: pd.DataFrame):
         
@@ -124,6 +128,8 @@ class DataPreProcessing:
         logger.info(f"Data sample after encoding:\n{df.head(1)}")
 
         # Step 4: Return encoded DataFrame
+        os.makedirs(os.path.dirname(self.config.encoded_data_path), exist_ok=True)
+        df.to_csv(self.config.encoded_data_path)
         return df
     
     def data_train_test_split(self,df:pd.DataFrame):
@@ -138,6 +144,9 @@ class DataPreProcessing:
         sclar=StandardScaler()
         x_train_scaller=sclar.fit_transform(x_train)
         x_test_scaller=sclar.transform(x_test)
+        os.makedirs(os.path.dirname(self.config.preprocessing_data_path), exist_ok=True)
+        with open(self.config.preprocessing_data_path, 'wb') as f:
+            pickle.dump(sclar, f)
         return x_train_scaller,x_test_scaller,y_train,y_test
 
 

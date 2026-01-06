@@ -35,7 +35,13 @@ class DataIngestion:
             logger.info(f"DataFrame shape: {df.shape}")
             #logger.info(f"DataFrame columns: {list(df.columns)}")
             #logger.info(f"First 2 rows:\n{df.head(2)}")
+            grp=df.groupby('fraud_reported')
+            logger.info(f"Checking The Balanced / Imbalanced data set ")
+            logger.info(f"Basic count")
+            logger.info(df['fraud_reported'].value_counts())
 
+            logger.info(f"Percentage distribution")
+            logger.info(df['fraud_reported'].value_counts(normalize=True) * 100)
             return df
 
         except FileNotFoundError:
